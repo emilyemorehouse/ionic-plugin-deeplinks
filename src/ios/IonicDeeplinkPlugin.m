@@ -2,8 +2,6 @@
 
 #import <Cordova/CDVAvailability.h>
 
-@import AdSupport;
-
 @implementation IonicDeeplinkPlugin
 
 - (void)pluginInitialize {
@@ -94,14 +92,6 @@
 
 - (void)getHardwareInfo:(CDVInvokedUrlCommand *)command {
   NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
-
-  if([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-    NSUUID *IDFA = [[ASIdentifierManager sharedManager] advertisingIdentifier];
-    NSString *adId = [IDFA UUIDString];
-    if(adId && [adId length] > 0) {
-      [info setObject:adId forKey:@"adid"];
-    }
-  }
 
   NSString *uuid = [[UIDevice currentDevice].identifierForVendor UUIDString];
 
